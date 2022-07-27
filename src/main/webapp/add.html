@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加</title>
+</head>
+<body>
+
+<div id="app">
+    <from>
+        用户 <input v-model="user.username" name="username"><br>
+        密码 <input v-model="user.password" name="password"><br>
+
+        <input type="button" value="提交" @click="submitForm()">
+
+    </from>
+</div>
+
+<script src="js/axios-0.18.0.js"></script>
+<script src="js/vue.js"></script>
+<script>
+
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                user: {}
+            }
+        },
+        methods: {
+            submitForm() {
+                var _this = this;
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/selectall",
+                    data: _this.user
+                }).then(function (resp) {
+                    alert("发送异步请求");
+                    if(resp.data != null){
+                        location.href = "http://localhost:8080/viewAllUser.html";
+                    }
+                })
+            }
+        }
+
+    });
+
+</script>
+</body>
+</html>

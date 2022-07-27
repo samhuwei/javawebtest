@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AllUser</title>
+</head>
+<body>
+
+<div id="app">
+
+    <input name="key" v-model="key">
+    {{key}}
+    <br>
+
+  <table>
+      <tr>
+          <th>序号</th>
+          <th>名字</th>
+          <th>密码</th>
+          <th>性别</th>
+          <th>地址</th>
+      </tr>
+
+    <tr v-for="(user, i) in users">
+      <td>{{i + 1}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.addr}}</td>
+    </tr>
+  </table>
+
+
+</div>
+
+<script src="js/axios-0.18.0.js"></script>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return{
+                users:[],
+                key:123
+            }
+        },
+        mounted() {
+            var _this = this;
+            axios({
+                method: "post",
+                url: "http://localhost:8080/selectall"
+            }).then(function (resp) {
+                alert("发送异步请求");
+                _this.users = resp.data;
+            })
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>js-demo1</title>
+</head>
+<body>
+
+
+
+<div id="app">
+    <a v-bind:href="url">百度一下</a>
+
+    <input v-model="count">
+    <!-- 插值表达式 -->
+    {{username}}
+    <br>
+    <input type="button" value="点我" v-on:click="show()">
+
+    <div v-if="count == 1">div1</div>
+    <div v-else-if="count == 2">div2</div>
+    <div v-else>div3</div>
+
+    <div v-show="count == 4">div4</div><hr>
+
+    <div v-for="(addr, i) in addrs">
+        {{i+1}}-{{addr}}
+    </div>
+
+</div>
+
+<script src="js/vue.js"></script>
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    // 1.创建vue核心对象
+      new Vue({
+        el:"#app",
+        data(){
+          return{
+              username:"",
+              url:"https://www.baidu.com",
+              count:3,
+              addrs:["北京", "上海", "深圳"]
+          }
+        },
+          methods:{
+              show(){
+                  alert("啊啊啊");
+              }
+          },
+          mounted(){
+            alert("挂载完成，发送异步请求")
+          }
+      });
+
+</script>
+</body>
+</html>

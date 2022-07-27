@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册界面</title>
+</head>
+<body>
+
+<form action="/register" method="post">
+    <input type="text" name="username"> <br>
+    <input type="text" name="password"> <br>
+
+    <input type="text" name="checkcode"> <br>
+    <img id="checkcodeimg" src="/checkcode"> <br>
+    <a href="#" id="flush">换一张</a>  <br>
+
+    <input type="submit" name="注册" value="注册">
+
+</form>
+
+<script>
+    document.getElementById("flush").onclick = function () {
+        document.getElementById("checkcodeimg").src = "/checkcode?" + new Date().getMilliseconds();
+    }
+</script>
+
+</body>
+</html>

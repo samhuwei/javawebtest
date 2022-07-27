@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 对应Mapper接口的全路径名字-->
+<mapper namespace="com.hw.mapper.BrandMapper">
+
+    <resultMap id="brandResultMap" type="brand">
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
+
+    <delete id="deleteByIds">
+        delete
+        from tb_brand
+        where id in
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach> ;
+
+    </delete>
+
+    <select id="selectByConditions" resultMap="brandResultMap">
+        select * from tb_brand
+        /*where status = #{status} and company_name = #{companyName} and brand_name = #{brand_name};*/
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="companyName != null and companyName != '' ">
+                and company_name like #{companyName}
+            </if>
+            <if test="brandName != null and brandName != '' ">
+                and brand_name like #{brandName}
+            </if>
+        </where>
+
+    </select>
+    <select id="selectByConditionsTwo">
+        select *
+        from tb_brand
+        <where>
+            <choose>
+                <when test="status != null">
+                    status = #{status}
+                </when>
+                <when test="status != null">
+                    company_name like #{companyName}
+                </when>
+                <when test="status != null">
+                    brand_name like #{brandName}
+                </when>
+                <otherwise>
+                    1 = 1
+                </otherwise>
+            </choose>
+        </where>
+
+    </select>
+    <select id="selectByPage" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where id <![CDATA[
+            >
+        ]]> #{firstId}
+          and id <![CDATA[
+              <
+              ]]> #{lastId}
+
+    </select>
+
+
+    <!--<resultMap id="brandResultMap" type="brand">
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="brandResultMap">
+        select *
+        from tb_brand;
+    </select>
+
+    <select id="selectById" resultMap="brandResultMap">
+        select *
+        from tb_brand where id
+        <![CDATA[
+            >
+        ]]>
+        #{id};
+    </select>
+
+    <select id="selectByCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        <where>
+            <if test="status != null">
+                status = #{status}
+            </if>
+            <if test="brandName != null and brandName != '' ">
+                and brand_name like #{brandName}
+            </if>
+            <if test="companyName != null and companyName != '' ">
+                and company_name like #{companyName};
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByConditionMap" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where brand_name=#{getBrandName()} and company_name=#{getCompanyName()};
+    </select>
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_brand (brand_name, company_name, ordered, description, status)
+        values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
+    </insert>
+
+    <update id="update">
+        update tb_brand set brand_name=#{brandName}, company_name=#{companyName}, ordered=#{ordered},
+                            description=#{description}, status=#{status}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteOne">
+        delete
+        from tb_brand
+        where id = #{id};
+    </delete>-->
+
+</mapper>

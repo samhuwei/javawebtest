@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 对应Mapper接口的全路径名字-->
+<mapper namespace="com.hw.mapper.UserMapper">
+    <insert id="add">
+        insert into tb_user (username, password)
+        values (#{username}, #{password});
+    </insert>
+
+    <select id="selectUser" resultType="com.hw.pojo.User">
+        select * from tb_user where username = #{username} and password = #{password};
+    </select>
+
+    <select id="selectByUsername" resultType="com.hw.pojo.User">
+        select * from tb_user where username = #{username};
+    </select>
+
+</mapper>
