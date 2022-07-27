@@ -25,7 +25,7 @@ public class ServletDemo1 extends HttpServlet {
         request.setAttribute("name","胡蔚");
         // 获取请求调度员来forward
         request.getRequestDispatcher("/demo2").forward(request, response);*/
-        request.setAttribute("name", "胡蔚");
+        request.setAttribute("name", "胡蔚dev01");
         request.getRequestDispatcher("/demo02").forward(request, response);
 
         // response重定向
