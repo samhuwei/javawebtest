@@ -15,8 +15,8 @@ public class ServletDemo2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 获取Session对象
-        HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("username"));
+/*        HttpSession session = request.getSession();
+        System.out.println(session.getAttribute("username"));*/
         // 获取cookie
 /*        Cookie[] cookies = request.getCookies();
 
@@ -29,7 +29,7 @@ public class ServletDemo2 extends HttpServlet {
                 break;
             }
         }*/
-
+        System.out.println(request.getParameter("name"));
         System.out.println("demo2...");
 /*        // 设置编码类型
         response.setContentType("text/html;charset=UTF-8");

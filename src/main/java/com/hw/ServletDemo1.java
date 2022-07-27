@@ -10,8 +10,8 @@ import java.net.URLEncoder;
 public class ServletDemo1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("username","胡蔚");
+/*        HttpSession session = request.getSession();
+        session.setAttribute("username","胡蔚");*/
 
         // cookie 发送
 /*        String username = URLEncoder.encode("胡蔚","UTF-8");
@@ -25,6 +25,8 @@ public class ServletDemo1 extends HttpServlet {
         request.setAttribute("name","胡蔚");
         // 获取请求调度员来forward
         request.getRequestDispatcher("/demo2").forward(request, response);*/
+        request.setAttribute("name", "胡蔚");
+        request.getRequestDispatcher("/demo02").forward(request, response);
 
         // response重定向
 /*        response.setStatus(302);
