@@ -34,7 +34,7 @@ public class ServletDemo1 extends HttpServlet {
         // 简化方法设置response重定向
 //        response.sendRedirect("/demo2");
 
-        System.out.println("demo1...");
+        System.out.println("demo1...master");
 
     }
 
